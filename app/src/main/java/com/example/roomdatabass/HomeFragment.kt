@@ -20,6 +20,17 @@ class HomeFragment : Fragment() {
     ): View? {
         binding= FragmentHomeBinding.inflate(layoutInflater,container,false)
 
+        val notes : List<Note> = NoteDataBase.getDb(requireContext()).getNoteDao().getAllData()
+
+           var adapter =NoteAdapter()
+           adapter.submitList(notes)
+
+
+        binding.recyclerView.adapter = adapter
+
+
+
+
 
         binding.addBton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addFragment)
